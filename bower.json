@@ -1,0 +1,25 @@
+{
+  "name": "my-contact-list",
+  "description": "A simple contact list using the MEAN Stack",
+  "main": "app.js",
+  "authors": [
+    "McAriel Caba"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "contact",
+    "mean-stack"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/lib/bootstrap/dist/css/bootstrap.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1><%= title %></h1>
+      <ul class="list-group">
+        <% person.forEach(function(contact) { %>          
+            <li class="list-group-item">
+              <a href="/api/contacts/<%= contact._id %>" >
+                <%= contact.name %>
+              </a>
+            </li>          
+        <% }); %>
+      </ul>
+      <h3>Add a Contact</h3>
+      <form action="/api/contacts" method="post">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" name="name" placeholder="ex. John Doe">
+        </div>
+        <div class="form-group">
+          <label>Addresss</label>
+          <input type="text" class="form-control" name="address" placeholder="ex. 284 P. Rosales St.">
+        </div>
+        <div class="form-group">
+          <label>Mobile</label>
+          <input type="text" class="form-control" name="mobile" placeholder="ex. 09155397406">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>    
+  </body>
+</html>
