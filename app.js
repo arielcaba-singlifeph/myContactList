@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(3000);
+app.listen(8000);
 console.log('Server is listening on http://localhost:8000');
 
 module.exports = app;
