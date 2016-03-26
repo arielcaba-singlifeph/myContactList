@@ -1,0 +1,32 @@
+<md-tabs md-dynamic-height md-border-bottom>
+  <md-tab id="favorites">
+    <md-tab-label>
+      <md-icon md-svg-icon="images/icons/favorite.svg"></md-icon>
+    </md-tab-label>
+    <md-tab-body>
+      <div ng-controller="listContacts">
+        <md-input-container class="md-icon-float md-block">
+          <label>Search</label>
+          <input type="text" ng-model="search"/>
+          <md-icon md-svg-icon="images/icons/search.svg"></md-icon>
+        </md-input-container>
+        <md-list-item class="md-2-line" ng-repeat="contact in contacts | filter: search">
+          <div class="md-list-item-text">
+            <a ui-sref="contact-details" ng-cick="">{{contact.name}}</a>
+            <p>{{contact.mobile}}</p>
+          </div>
+        </md-list-item>
+      </div>
+    </md-tab-body>
+  </md-tab>
+
+  <md-tab id="addPerson">
+    <md-tab-label>
+      <md-icon md-svg-icon="images/icons/add_person.svg"></md-icon>
+    </md-tab-label>
+    <md-tab-body>
+      <h3><a ui-sref="add-contact">Add Contact</a></h3>
+    </md-tab-body>
+  </md-tab>
+
+</md-tabs>
