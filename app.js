@@ -11,15 +11,21 @@ var users = require('./routes/users');
 var api = require('./routes/api');
 var contacts = require('./routes/contacts');
 
-
+var db_name = mycontactlist;
+var mongodb_connection_string = '';
+//provide a sensible default for local development
+mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + db_name;
+//take advantage of openshift env vars when available:
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+  mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+}
 // connect to mongoDB
-mongoose.connect('mongodb://localhost/contacts');
+mongoose.connect(mongodb_connection_string);
 var db = mongoose.connection;
 db.on('error', console.error.bind('console', 'connection error'));
 db.once('open', function(){
   console.log('We are connected to mongoDB!');
 });
-
 
 var app = express();
 
@@ -72,7 +78,13 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(8000);
-console.log('Server is listening on http://localhost:8000');
+
+
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+
+app.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", server_port " + port )
+});
 
 module.exports = app;
